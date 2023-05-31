@@ -78,10 +78,10 @@ function App() {
     >
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Shared />}>
+          <Route path="/" element={<Shared />}>
             <Route index element={<Stats product={product} />} />
             <Route
-              path='post'
+              path="post"
               element={
                 <Post
                   name={name}
@@ -103,13 +103,13 @@ function App() {
               }
             />
             <Route
-              path='products'
+              path="products"
               element={<ProductPage product={product} />}
             />
 
-            <Route path='products/:productId' element={<EachProduct />} />
+            <Route path="products/:productId" element={<EachProduct />} />
 
-            <Route path='*' element={<Error />} />
+            <Route path="*" element={<Error />} />
           </Route>
         </Routes>
       </BrowserRouter>

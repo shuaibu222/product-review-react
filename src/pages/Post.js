@@ -20,90 +20,90 @@ const AddPage = ({
   successMessage,
 }) => {
   return (
-    <section className='post-parent'>
-      <section className='post'>
-        <div className='add-style'>
+    <section className="post-parent">
+      <section className="post">
+        <div className="add-style">
           <h1>Post a product</h1>
         </div>
 
-        <form className='form'>
+        <form className="form">
           <fieldset>
-            <label htmlFor='title'>Name: </label>
+            <label htmlFor="title">Name: </label>
             <input
-              type='text'
+              type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              name='text'
-              id='title'
+              name="text"
+              id="title"
             />
           </fieldset>
           <fieldset>
-            <label htmlFor='title'>Motto: </label>
+            <label htmlFor="title">Motto: </label>
             <input
-              type='text'
+              type="text"
               value={motto}
               onChange={(e) => setMotto(e.target.value)}
-              name='text'
-              id='title'
+              name="text"
+              id="title"
             />
           </fieldset>
           <fieldset>
-            <label htmlFor='link'>Link: </label>
+            <label htmlFor="link">Link: </label>
             <input
-              type='url'
-              name='url'
-              id='link'
+              type="url"
+              name="url"
+              id="link"
               value={productLink}
               onChange={(e) => setProductLink(e.target.value)}
             />
           </fieldset>
           <fieldset>
-            <label htmlFor='link'>Category: </label>
+            <label htmlFor="link">Category: </label>
             <select
-              name='category'
-              id='category'
-              className='category'
+              name="category"
+              id="category"
+              className="category"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             >
-              <option value='default'>select category</option>
-              <option value='productivity'>productivity</option>
-              <option value='video streaming'>video streaming</option>
-              <option value='artificial inteligence'>
+              <option value="default">select category</option>
+              <option value="productivity">productivity</option>
+              <option value="video streaming">video streaming</option>
+              <option value="artificial inteligence">
                 artificial inteligence
               </option>
             </select>
           </fieldset>
           <fieldset>
-            <label htmlFor='textarea'>Overview: </label>
+            <label htmlFor="textarea">Overview: </label>
             <textarea
-              name='textarea'
-              id='textarea'
-              cols='30'
-              rows='5'
+              name="textarea"
+              id="textarea"
+              cols="30"
+              rows="5"
               value={overview}
               onChange={(e) => setOverview(e.target.value)}
               // placeholder='e.g. Opay product is...'
             ></textarea>
           </fieldset>
           <fieldset>
-            <label htmlFor='img-url'>Image-link: </label>
+            <label htmlFor="img-url">Image-link: </label>
             <input
-              type='url'
+              type="url"
               value={imageLink}
               onChange={(e) => setImageLink(e.target.value)}
-              name='url'
-              id='img-url'
+              name="url"
+              id="img-url"
             />
           </fieldset>
         </form>
-        <button type='submit' className='submit-btn' onClick={handleSubmit}>
+        <button type="submit" className="submit-btn" onClick={handleSubmit}>
           Post Product
         </button>
       </section>
-      <section className='message'>
+      <section className="message">
         {successMessage && (
-          <div className='success'>
+          <div className="success">
             <p>{successMessage}</p>
             <span>
               <IoIosCheckmarkCircleOutline />
