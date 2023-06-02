@@ -50,7 +50,6 @@ const EachProduct = () => {
 
       <section to={`/products/${_id}`} className="product" key={_id}>
         <div className="first">
-          <p></p>
           <img src={imageLink} alt={name} />
           <div className="p-desc">
             <div className="top">
@@ -75,7 +74,7 @@ const EachProduct = () => {
           <p>{overview}</p>
         </div>
         <div className="review">
-          <h3>Review</h3>
+          <h3>Reviews</h3>
           <Reviews
             handleCommentSubmit={handleCommentSubmit}
             productId={productId}

@@ -30,8 +30,11 @@ const Reviews = ({ handleCommentSubmit, productId, name }) => {
   return (
     <>
       <section className="comment">
-        <label htmlFor="comment" style={{ fontWeight: 'bolder', color: 'red' }}>
-          {eachComment.length} reviews.
+        <label
+          htmlFor="comment"
+          style={{ fontSize: '0.7rem', color: '#999da6', marginBottom: '2rem' }}
+        >
+          Total reviews on {name} are: {eachComment.length}
         </label>
         <input
           type="text"

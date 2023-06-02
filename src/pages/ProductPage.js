@@ -1,37 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { IoTrashOutline } from 'react-icons/io5';
-import { HiExternalLink } from 'react-icons/hi';
-import { deleteComm } from '../utils/delete';
 
 const ProductPage = ({ product }) => {
+  const filterSet = [
+    'All',
+    ...new Set(product.map((filter) => filter.category)),
+  ];
   return (
-    <article className='product-parent'>
-      <h1>Products</h1>
-      <section className='products'>
+    <article className="products">
+      <section className="p-first-row">
+        <form className="product-search">
+          <input
+            type="text"
+            placeholder="Search"
+            name="hero-search-input"
+            id="hero-search-input"
+          />
+        </form>
+        <div className="product-filter">
+          <h1>Featured products of all time</h1>
+          <div className="filters-p">
+            {filterSet.map((filter, i) => {
+              return <p key={i}>{filter}</p>;
+            })}
+          </div>
+        </div>
+      </section>
+      <section className="products-grid">
         {product.map((productList) => {
-          const { _id, name, imageLink, motto, category } = productList;
+          const { _id, name, imageLink, category, overview } = productList;
           return (
-            <div key={_id} className='product'>
-              <div className='first'>
-                <img src={imageLink} alt={name} />
-                <div className='p-desc'>
-                  <div className='top'>
-                    <Link to={`/products/${_id}`} className='product-click'>
-                      {name}
-                      <span>
-                        <HiExternalLink />
-                      </span>
-                    </Link>
-                    <p>{motto}</p>
-                  </div>
-                  <div className='categ'>
-                    <p>{category}</p>
-                  </div>
+            <div key={_id} className="product-card">
+              <img src={imageLink} alt={name} />
+              <div className="card-desc">
+                <div className="top">
+                  <p className="product-click">{name}</p>
+                  <p>{category}</p>
+                  <p>{overview.slice(0, 100) || []}</p>
                 </div>
+                <Link to={`/products/${_id}`}>
+                  <button className="more">Learn More</button>
+                </Link>
               </div>
-
-              <IoTrashOutline className='del' onClick={() => deleteComm(_id)} />
             </div>
           );
         })}

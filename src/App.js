@@ -54,7 +54,6 @@ function App() {
       setImageLink('');
       setMotto('');
     }
-    console.log('hello');
   }
 
   useEffect(() => {
@@ -79,7 +78,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Shared />}>
-            <Route index element={<Stats product={product} />} />
+            <Route
+              index
+              element={<Stats product={product} comment={eachComment} />}
+            />
             <Route
               path="post"
               element={
