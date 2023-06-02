@@ -219,7 +219,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  max-width: 80vw;
+  max-width: 70vw;
   margin-inline: auto;
 }
 
@@ -417,7 +417,7 @@ main {
 }
 
 @media (min-width: 40rem) {
-  .product {
+  .products {
     max-width: 80vw;
   }
 
