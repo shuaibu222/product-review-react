@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { client } from '../service/sanity';
 import { FaComments } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Stats = () => {
   const [filtered, setFiltered] = useState([]);
@@ -41,7 +42,7 @@ const Stats = () => {
             {filtered.map((prod) => {
               const { imageLink, _id, name } = prod;
               return (
-                <div className="card" key={_id}>
+                <Link to={`/products/${_id}`} className="card" key={_id}>
                   <img src={imageLink} alt={name} />
                   <div className="desc-card">
                     <p>{name}</p>
@@ -50,7 +51,7 @@ const Stats = () => {
                       <span>10</span>
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>

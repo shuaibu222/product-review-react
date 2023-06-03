@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const ProductPage = ({ items, filterItems, filterSet, activeStyle }) => {
-  // const [categories, setCategories] = useState(items);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // Function to handle search input change
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  // Function to filter items based on the search term
+  const filterItemsBySearch = () => {
+    return items.filter((productList) => {
+      const { name } = productList;
+      return name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+  };
+
+  // Get the filtered items based on the search term
+  const filteredItems = filterItemsBySearch();
+
   return (
     <article className="products">
       <section className="p-first-row">
@@ -12,6 +29,8 @@ const ProductPage = ({ items, filterItems, filterSet, activeStyle }) => {
             placeholder="Search"
             name="hero-search-input"
             id="hero-search-input"
+            value={searchTerm}
+            onChange={handleSearchChange}
           />
         </form>
         <div className="product-filter">
@@ -32,7 +51,7 @@ const ProductPage = ({ items, filterItems, filterSet, activeStyle }) => {
         </div>
       </section>
       <section className="products-grid">
-        {items.map((productList) => {
+        {filteredItems.map((productList) => {
           const { _id, name, imageLink, category, overview } = productList;
           return (
             <div key={_id} className="product-card">
