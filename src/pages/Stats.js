@@ -35,8 +35,7 @@ const Stats = () => {
       <section className="hero-width">
         <section className="second-row">
           <div className="filters">
-            <p className="active">Latest</p>
-            <p>Popular</p>
+            <p className="latest">Latest Product</p>
           </div>
           <div className="some-product">
             {filtered.map((prod) => {

@@ -18,12 +18,19 @@ function App() {
   const [imageLink, setImageLink] = useState('');
   // values holder
   const [product, setProduct] = useState([]);
+  const [items, setItems] = useState(product);
   const [newComment, setNewComment] = useState('');
   const [comment, setComment] = useState({});
   const [eachComment, setEachComment] = useState([]);
-  // handle success and errors
+  // handle success, errors and active styles
   const [successMessage, setSuccessMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [activeStyle, setActiveStyle] = useState('All');
+
+  const filterSet = [
+    'All',
+    ...new Set(product.map((filter) => filter.category)),
+  ];
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -59,9 +66,22 @@ function App() {
   useEffect(() => {
     client
       .fetch(`*[_type == "product"] | order(_createdAt desc)`)
-      .then((data) => setProduct(data || []))
+      .then((data) => {
+        setProduct(data || []);
+        setItems(data || []);
+      })
       .catch((error) => console.error(error));
-  }, [product]);
+  }, []);
+
+  const filterItems = (category) => {
+    setActiveStyle(category);
+    if (category === 'All') {
+      setItems(product);
+      return;
+    }
+    const newItems = product.filter((product) => product.category === category);
+    setItems(newItems);
+  };
 
   return (
     <MyContext.Provider
@@ -106,7 +126,15 @@ function App() {
             />
             <Route
               path="products"
-              element={<ProductPage product={product} />}
+              element={
+                <ProductPage
+                  items={items}
+                  filterItems={filterItems}
+                  filterSet={filterSet}
+                  product={product}
+                  activeStyle={activeStyle}
+                />
+              }
             />
 
             <Route path="products/:productId" element={<EachProduct />} />
