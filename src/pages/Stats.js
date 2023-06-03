@@ -46,10 +46,6 @@ const Stats = () => {
                   <img src={imageLink} alt={name} />
                   <div className="desc-card">
                     <p>{name}</p>
-                    <div>
-                      <FaComments />
-                      <span>10</span>
-                    </div>
                   </div>
                 </Link>
               );
