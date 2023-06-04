@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { client } from '../service/sanity';
-import { FaComments } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Stats = () => {
   const [filtered, setFiltered] = useState([]);
+  const [searchFiltered, setSearchFiltered] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    client
-      .fetch(`*[_type == "product"] | order(_createdAt desc)[0..3]`)
-      .then((data) => setFiltered(data || []))
-      .catch((error) => console.error(error));
-  }, [filtered]);
+    if (searchQuery) {
+      const query = `*[_type == "product" && name match "${searchQuery}*"]`;
+      client
+        .fetch(query)
+        .then((data) => setSearchFiltered(data || []))
+        .catch((error) => console.error(error));
+    } else {
+      client
+        .fetch(`*[_type == "product"] | order(_createdAt desc)[0..3]`)
+        .then((data) => setFiltered(data || []))
+        .catch((error) => console.error(error));
+    }
+  }, [searchQuery]);
 
   return (
     <article className="hero">
@@ -23,14 +32,23 @@ const Stats = () => {
             cupiditate adipisci earum voluptatibus vitae.
           </p>
         </div>
-
         <form className="hero-search">
           <input
             type="text"
             placeholder="Search"
             name="hero-search-input"
             id="hero-search-input"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
+          {searchFiltered.map((prod) => {
+            const { _id, name } = prod;
+            return (
+              <Link to={`/products/${_id}`} className="search-result" key={_id}>
+                {name}
+              </Link>
+            );
+          })}
         </form>
       </section>
       <section className="hero-width">

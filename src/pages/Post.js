@@ -69,7 +69,7 @@ const AddPage = ({
               <option value="default">select category</option>
               <option value="productivity">productivity</option>
               <option value="video">video</option>
-              <option value="ai">AI</option>
+              <option value="AI">AI</option>
             </select>
           </fieldset>
           <fieldset>

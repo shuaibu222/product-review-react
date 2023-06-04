@@ -215,6 +215,14 @@ main {
   background: white;
 }
 
+.search-result {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0.5rem;
+  background: white;
+}
+
 .second-row {
   display: flex;
   flex-direction: column;
