@@ -191,6 +191,7 @@ main {
 
 .hero-search {
   width: 100%;
+  position: relative;
 }
 
 .hero-search input {
@@ -215,13 +216,23 @@ main {
   background: white;
 }
 
+.search-list {
+  position: absolute;
+  top: 3.7rem;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  width: 100%;
+  background: white;
+}
+/* 
 .search-result {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0.5rem;
-  background: white;
-}
+  
+} */
 
 .second-row {
   display: flex;

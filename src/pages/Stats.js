@@ -41,14 +41,20 @@ const Stats = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          {searchFiltered.map((prod) => {
-            const { _id, name } = prod;
-            return (
-              <Link to={`/products/${_id}`} className="search-result" key={_id}>
-                {name}
-              </Link>
-            );
-          })}
+          <div className="search-list">
+            {searchFiltered.map((prod) => {
+              const { _id, name } = prod;
+              return (
+                <Link
+                  to={`/products/${_id}`}
+                  className="search-result"
+                  key={_id}
+                >
+                  {name}
+                </Link>
+              );
+            })}
+          </div>
         </form>
       </section>
       <section className="hero-width">
