@@ -47,6 +47,17 @@ function App() {
       };
 
       try {
+        // Check for duplicate product by name
+        const duplicateProduct = await client.fetch(
+          `*[_type == "product" && name == $name][0]`,
+          { name }
+        );
+
+        if (duplicateProduct) {
+          await client.delete(duplicateProduct._id);
+          console.log(`Duplicate product deleted: ${duplicateProduct._id}`);
+        }
+
         const post = await client.create(newProduct);
         console.log(`Document ID: ${post._id}`);
         setSuccessMessage('Product created successfully!');
@@ -67,8 +78,18 @@ function App() {
     client
       .fetch(`*[_type == "product"] | order(_createdAt desc)`)
       .then((data) => {
-        setProduct(data || []);
-        setItems(data || []);
+        const uniqueProducts = [];
+        const seenNames = new Set();
+
+        for (const product of data) {
+          if (!seenNames.has(product.name)) {
+            uniqueProducts.push(product);
+            seenNames.add(product.name);
+          }
+        }
+
+        setProduct(uniqueProducts || []);
+        setItems(uniqueProducts || []);
       })
       .catch((error) => console.error(error));
   }, []);

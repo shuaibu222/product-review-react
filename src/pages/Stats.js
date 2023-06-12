@@ -17,7 +17,19 @@ const Stats = () => {
     } else {
       client
         .fetch(`*[_type == "product"] | order(_createdAt desc)[0..3]`)
-        .then((data) => setFiltered(data || []))
+        .then((data) => {
+          const uniqueProducts = [];
+          const seenNames = new Set();
+
+          for (const product of data) {
+            if (!seenNames.has(product.name)) {
+              uniqueProducts.push(product);
+              seenNames.add(product.name);
+            }
+          }
+          setFiltered(uniqueProducts || []);
+        })
+
         .catch((error) => console.error(error));
     }
   }, [searchQuery]);
