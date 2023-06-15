@@ -669,6 +669,24 @@ textarea:focus {
   display: none;
 }
 
+.success,
+.error {
+  display: flex;
+  gap: 0.5rem;
+  color: var(--bg-color);
+  font-size: 0.9rem;
+  padding: 0.7rem;
+  border-radius: 0.5rem;
+}
+
+.success {
+  background: rgba(0, 255, 0, 0.507);
+}
+
+.error {
+  background: rgba(255, 0, 0, 0.507);
+}
+
 @media (min-width: 40rem) {
   .post {
     max-width: 30vw;

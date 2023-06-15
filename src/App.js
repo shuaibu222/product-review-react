@@ -63,7 +63,7 @@ function App() {
         setSuccessMessage('Product created successfully!');
       } catch (error) {
         console.error('Create failed: ', error.message);
-        setErrorMessage('An error occurred while creating the product.');
+        setErrorMessage('Error! not created.');
       }
 
       setName('');

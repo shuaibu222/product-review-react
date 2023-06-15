@@ -98,24 +98,24 @@ const AddPage = ({
         <button type="submit" className="submit-btn" onClick={handleSubmit}>
           Post Product
         </button>
-      </section>
-      <section className="message">
-        {successMessage && (
-          <div className="success">
-            <p>{successMessage}</p>
-            <span>
-              <IoIosCheckmarkCircleOutline />
-            </span>
-          </div>
-        )}
-        {errorMessage && (
-          <>
-            <p>{errorMessage}</p>
-            <span>
-              <VscError />
-            </span>
-          </>
-        )}
+        <section className="message">
+          {successMessage && (
+            <div className="success">
+              <p>{successMessage}</p>
+              <span>
+                <IoIosCheckmarkCircleOutline />
+              </span>
+            </div>
+          )}
+          {errorMessage && (
+            <div className="error">
+              <p>{errorMessage}</p>
+              <span>
+                <VscError />
+              </span>
+            </div>
+          )}
+        </section>
       </section>
     </section>
   );
